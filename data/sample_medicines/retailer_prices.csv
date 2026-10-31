@@ -1,0 +1,6 @@
+name,strength,form,retailer,pack_size,price,currency,url,last_updated
+Paracetamol,500mg,Tab,PharmaStore,10,25.00,INR,https://example-pharmastore.test/paracetamol-500mg,2026-10-28
+Paracetamol,500mg,Tab,MediMart,15,32.00,INR,https://example-medimart.test/paracetamol-500mg,2026-10-27
+Paracetamol,500mg,Tab,QuickMeds,10,27.50,INR,https://example-quickmeds.test/paracetamol-500mg,2026-10-29
+Amoxicillin,250mg,Cap,PharmaStore,10,85.00,INR,https://example-pharmastore.test/amoxicillin-250mg,2026-10-28
+Amoxicillin,250mg,Cap,MediMart,10,79.00,INR,https://example-medimart.test/amoxicillin-250mg,2026-10-26

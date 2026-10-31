@@ -1,0 +1,24 @@
+Medicine: Paracetamol (Acetaminophen)
+Document type: general reference
+Therapeutic category: analgesic, antipyretic
+Verification status: sample/illustrative only - not a substitute for an official drug label
+Document date: 2026-10-30
+
+Overview:
+Paracetamol is commonly used to relieve mild to moderate pain and to reduce fever.
+It is available in forms such as tablets, syrups, and injections, often in strengths
+like 500mg per tablet.
+
+Common usage notes:
+Typical adult oral dosing is often discussed in ranges such as 500mg to 1000mg,
+taken every 4 to 6 hours as directed by a prescriber, not exceeding the maximum
+daily limit stated on the product label or by a healthcare professional.
+
+Common side effects:
+Generally well tolerated at recommended doses. Rare side effects may include
+nausea or allergic skin reactions. Overdose can cause serious liver damage.
+
+Important safety note:
+This document is for general educational reference only. Always follow the
+dosage prescribed by a qualified healthcare professional or the instructions on
+the product label. Do not use this document to self-adjust medication.

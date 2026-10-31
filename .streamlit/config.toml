@@ -1,0 +1,12 @@
+[server]
+address = "127.0.0.1"
+
+[client]
+showErrorDetails = "none"
+
+[theme]
+base = "light"
+primaryColor = "#08786f"
+backgroundColor = "#f6f9f8"
+secondaryBackgroundColor = "#e9f0ee"
+textColor = "#21312e"

@@ -1,0 +1,25 @@
+Medicine: Amoxicillin
+Document type: general reference
+Therapeutic category: antibiotic (penicillin class)
+Verification status: sample/illustrative only - not a substitute for an official drug label
+Document date: 2026-10-30
+
+Overview:
+Amoxicillin is an antibiotic used to treat certain bacterial infections. It is
+available in forms such as capsules and syrups, often in strengths like 250mg
+or 500mg per capsule.
+
+Common usage notes:
+Dosing and treatment duration are typically determined by a prescriber based on
+the type and severity of infection. Courses are often completed fully even if
+symptoms improve early, as directed by a healthcare professional.
+
+Common side effects:
+May include nausea, diarrhea, or allergic reactions. People with a known
+penicillin allergy should not take this medicine without medical guidance.
+
+Important safety note:
+This document is for general educational reference only. Always follow the
+dosage prescribed by a qualified healthcare professional or the instructions on
+the product label. Do not use this document to self-adjust medication or stop
+a prescribed antibiotic course early without medical advice.

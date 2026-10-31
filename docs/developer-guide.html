@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A beginner-friendly developer guide to the MediFind AI prototype.">
+  <title>MediFind AI | Developer Guide</title>
+  <style>
+    :root { color-scheme: light; --ink: #203431; --muted: #526861; --accent: #136c60; --rule: #d7e3dd; --paper: #fbfcfa; --warm: #ab593b; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #eef4f1; color: var(--ink); font-family: "Avenir Next", "Trebuchet MS", sans-serif; line-height: 1.65; }
+    a { color: #075f55; text-underline-offset: 3px; }
+    a:focus-visible { outline: 3px solid #bf694a; outline-offset: 3px; }
+    .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); max-width: 1440px; margin: auto; min-height: 100vh; background: var(--paper); }
+    nav { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 2rem 1.5rem; border-right: 1px solid var(--rule); background: #e8f1ed; }
+    .brand { display: flex; align-items: center; gap: .75rem; font-weight: 800; color: #173d36; }
+    .mark { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; background: var(--accent); color: white; font: bold 1.5rem Georgia, serif; border-radius: 6px; }
+    nav p { margin: 1.75rem 0 .45rem; color: var(--muted); font-size: .73rem; font-weight: 800; text-transform: uppercase; }
+    nav a { display: block; padding: .3rem 0; color: #34574e; text-decoration: none; font-size: .9rem; }
+    nav a:hover { color: #a4472e; text-decoration: underline; }
+    main { min-width: 0; padding: 0 4rem 5rem; }
+    header { padding: 4.5rem 0 3rem; border-bottom: 1px solid var(--rule); }
+    .eyebrow { color: var(--warm); font-size: .78rem; font-weight: 800; text-transform: uppercase; }
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { font: bold 3rem Georgia, serif; margin: .6rem 0 1rem; color: #163f37; }
+    h2 { font: bold 2rem Georgia, serif; color: #163f37; margin: 0 0 1rem; }
+    h3 { font-size: 1.14rem; margin: 1.8rem 0 .65rem; }
+    header p { max-width: 720px; font-size: 1.08rem; color: var(--muted); }
+    section { padding-top: 3rem; scroll-margin-top: 1rem; }
+    .lead { max-width: 800px; color: var(--muted); }
+    .notice { margin: 1.5rem 0; padding: 1rem 1.2rem; border-left: 4px solid #c0803b; background: #fbf3dc; }
+    .notice strong { color: #704616; }
+    .flow { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.25rem 0; }
+    .flow span { padding: .35rem .7rem; border: 1px solid #c5dcd2; background: #f0f7f3; font-size: .88rem; font-weight: 700; }
+    .flow span:not(:last-child)::after { content: "  →"; color: var(--warm); }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: .88em; overflow-wrap: anywhere; }
+    p code, li code, td code { background: #eaf1ed; padding: .1rem .25rem; }
+    pre { overflow-x: auto; padding: 1.15rem; background: #173a35; color: #edf8f2; border-radius: 4px; line-height: 1.55; }
+    pre code { font-size: .86rem; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: .7rem .75rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    th { color: #34574e; background: #edf5f0; font-size: .85rem; }
+    td:first-child { width: 32%; }
+    .table-wrap { overflow-x: auto; }
+    li { margin: .35rem 0; }
+    .muted { color: var(--muted); }
+    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+    @media (max-width: 760px) {
+      .layout { display: block; }
+      nav { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--rule); padding: 1.2rem; }
+      nav p { margin-top: 1rem; }
+      nav a { display: inline-block; margin-right: .9rem; }
+      main { padding: 0 1.2rem 3rem; }
+      header { padding: 2.5rem 0 2rem; }
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.6rem; }
+      td:first-child { width: auto; }
+    }
+    @media print { nav { display: none; } .layout { display: block; } main { padding: 0; } section { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <nav aria-label="Guide contents">
+    <div class="brand"><span class="mark" aria-hidden="true">M</span><span>MediFind AI<br><small>Developer guide</small></span></div>
+    <p>Start here</p>
+    <a href="#overview">Overview</a>
+    <a href="#setup">Setup</a>
+    <a href="#architecture">Architecture</a>
+    <p>Follow the data</p>
+    <a href="#prescription">Prescription review</a>
+    <a href="#shopping">Shopping demo</a>
+    <a href="#report">Report review</a>
+    <a href="#rag">Medicine reference &amp; RAG</a>
+    <p>Work on the project</p>
+    <a href="#files">File-by-file guide</a>
+    <a href="#tests">Tests</a>
+    <a href="#privacy">Privacy &amp; safety</a>
+    <a href="#next">Learning path</a>
+  </nav>
+  <main>
+    <header>
+      <div class="eyebrow">A practical guide for new contributors</div>
+      <h1>MediFind AI</h1>
+      <p>Follow an image or question through the code, understand the AI components, and learn where each file fits. This guide describes the current prototype, not a production-ready medical service.</p>
+      <a href="../README.md">Back to the README</a>
+    </header>
+
+    <section id="overview">
+      <h2>01 / What this project does</h2>
+      <p>MediFind AI is a Python application built with Streamlit. It has three tabs: <strong>Prescription review</strong>, <strong>Medicine reference</strong>, and <strong>Report review</strong>. A separate optional Google Shopping demo displays unverified search listings after a user confirms synthetic medicine details.</p>
+      <div class="notice"><strong>Important:</strong> This is a learning prototype. It is not clinically validated, does not diagnose or prescribe, and must not be used for patient care or purchase decisions. AI can invent or misread information. A source link or a user confirmation does not make an output medically verified.</div>
+      <p>The prototype has no authorized pharmacy feed and does not establish that a listing matches a prescription or has an equivalent pack size. The small sample catalog is not used to approve or reject a medicine.</p>
+    </section>
+
+    <section id="setup">
+      <h2>02 / Get it running</h2>
+      <ol>
+        <li>Install Python 3.11 or newer, <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>, and the Tesseract program. On macOS with Homebrew: <code>brew install tesseract</code>.</li>
+        <li>In the project directory, run <code>uv sync</code>. This creates a virtual environment and installs the versions recorded in <code>uv.lock</code>. The first install and first embedding-model download can take time and need network access.</li>
+        <li>Add <code>GOOGLE_API_KEY</code> to the local <code>.env</code> file for Gemini. Add <code>SERPAPI_API_KEY</code> only for the optional shopping demo. Use your own credentials and do not share or commit them.</li>
+        <li>Start the app and open the local address printed in the terminal:</li>
+      </ol>
+      <pre><code>uv run streamlit run app.py</code></pre>
+      <p>Run the tests from the project root with <code>uv run python -m unittest discover -s tests -v</code>. The tests use mocks for external services; passing tests does not establish clinical accuracy or verify a live API connection.</p>
+      <p class="muted">The default server address is <code>127.0.0.1</code>. Local binding is not authentication and does not protect an app exposed through a tunnel or proxy. See the README before considering any hosted deployment.</p>
+    </section>
+
+    <section id="architecture">
+      <h2>03 / How the parts fit</h2>
+      <div class="flow" aria-label="Application architecture"><span>Streamlit UI</span><span>Service functions</span><span>Local data or external APIs</span><span>Reviewed output</span></div>
+      <p><code>app.py</code> owns the UI, validates uploads, controls session state, and calls the service modules. A <strong>service</strong> is a Python module grouping related work: image extraction, shopping search, report comparison, or reference retrieval. The <code>data</code> directory holds examples and a generated vector index. The <code>tests</code> directory checks individual functions and UI behavior.</p>
+      <h3>Streamlit and session state</h3>
+      <p>Streamlit reruns the script when a user interacts with a widget. <code>st.session_state</code> stores things such as the current image identifier, editable rows, confirmed rows, and shopping results between reruns. This avoids repeating a provider request for every button press. A changed or removed upload clears the related review state. <strong>Clear session</strong> clears local session state; it cannot erase data already sent elsewhere.</p>
+      <h3>What is a DataFrame?</h3>
+      <p>A pandas DataFrame is a table with named columns. Here it stores editable medicine rows (<code>form</code>, <code>name</code>, <code>strength</code>) and report rows (<code>name</code>, <code>result</code>, <code>unit</code>, <code>reference_range</code>). Confirmation saves a copy; changing the table means the displayed copy no longer matches and the user must confirm again.</p>
+    </section>
+
+    <section id="prescription">
+      <h2>04 / Prescription review</h2>
+      <div class="flow"><span>Upload</span><span>Validate</span><span>OCR + Gemini</span><span>Review</span><span>Confirm</span></div>
+      <ol>
+        <li><strong>Disclosure and upload:</strong> The UI warns that uploading sends the entire image to Google Gemini. Only PNG or JPEG files up to 10 MB and 20 million pixels are accepted. Use synthetic samples for development.</li>
+        <li><strong>Local OCR:</strong> Tesseract converts image pixels into possible text. <code>extract_medicines</code> uses a regular expression, a text-matching pattern, to find a limited form/name/mg-strength structure. It is not a general prescription parser.</li>
+        <li><strong>Vision extraction:</strong> The image is converted to PNG and encoded as base64, a text representation of binary data. <code>extract_prescription_candidates</code> sends it to Gemini with instructions not to guess. The response is parsed as JSON and checked for exactly three string fields.</li>
+        <li><strong>Combine and review:</strong> <code>combine_candidates</code> keeps conflicting or incomplete readings separate and removes exact complete duplicates. A person can edit the table and must verify each field against the image. Some names receive a short, source-linked general reference, not a prescription match.</li>
+        <li><strong>Confirm:</strong> A nonempty name, strength, and form are required for every row. Confirmation is a user action, not clinical verification. The shopping demo appears only while the confirmed table still matches the edited table.</li>
+      </ol>
+      <p>If local OCR fails, Gemini is still attempted. If Gemini fails, available OCR results remain for review. Neither path guarantees correct or complete extraction.</p>
+    </section>
+
+    <section id="shopping">
+      <h2>05 / Optional shopping demo</h2>
+      <div class="flow"><span>Confirm synthetic details</span><span>Choose medicine</span><span>Click search</span><span>Review unverified listings</span></div>
+      <p>The selected name, strength, and form become a search query sent to SerpApi only after an explicit click. The provider may retain the query and results. Do not send real patient information. <code>search_shopping</code> requests India-oriented Google Shopping results, checks the response shape, and retains rows with a title, seller/source, and displayed price.</p>
+      <p>Links are accepted only for the expected HTTPS Google search URL shape; they are Google result links, not guaranteed direct retailer links. The UTC timestamp is when this app fetched the results, not when a seller updated them. Availability, source identity, medicine equivalence, and prices are not verified.</p>
+      <h3>Sorting and pages</h3>
+      <p><code>sort_listings</code> leaves relevance in provider order. For price order it uses <code>Decimal</code> only when a single displayed INR amount agrees with the provider's numeric amount; ambiguous prices are placed last. The UI shows four items per page and reuses the saved results when sorting or paging. Sorting is not a price comparison of equivalent packs.</p>
+    </section>
+
+    <section id="report">
+      <h2>06 / Report review</h2>
+      <div class="flow"><span>Upload image</span><span>Gemini transcription</span><span>Correct fields</span><span>Compare printed range</span></div>
+      <p>Report images have the same size, format, and privacy restrictions as prescription images. Gemini is asked to transcribe test name, result, unit, and the range printed for that result. The response is validated as a JSON list of objects with exactly those four string fields. If extraction fails, the user can enter values manually.</p>
+      <p>After the user checks the fields and selects <strong>Compare checked results</strong>, <code>compare_printed_range</code> uses decimal arithmetic for a single number and a two-sided numeric range. For example, a checked result of <code>8</code> with range <code>5-10</code> is labeled <code>OK (within range)</code>. A name and unit must be present. The code does not verify that the entered unit matches the printed range: a person must check that.</p>
+      <p>Missing or ambiguous values, inequalities, qualitative results, and invalid ranges return <code>Not compared</code>. Low and high are displayed in amber, in-range in green, and not compared in gray. These labels and colors do not indicate urgency, diagnose a condition, or interpret narrative findings.</p>
+    </section>
+
+    <section id="rag">
+      <h2>07 / Medicine reference and RAG</h2>
+      <p>Retrieval-augmented generation (RAG) gives a language model selected reference text along with a question. The goal is to ground its answer in that text, although retrieval and prompt instructions do not guarantee correctness.</p>
+      <div class="flow"><span>Documents</span><span>Chunks</span><span>Embeddings</span><span>Chroma search</span><span>Filtered context</span><span>Gemini answer or abstention</span></div>
+      <ol>
+        <li><strong>Documents:</strong> A LangChain <code>Document</code> combines text with metadata such as its source and verification status. The app includes a small set of source-checked NHS summaries in <code>VERIFIED_REFERENCES</code>; these have not been independently reviewed by a clinician.</li>
+        <li><strong>Chunking:</strong> <code>chunk_documents</code> splits the illustrative text files into pieces of up to 300 characters with 50 characters of overlap. Overlap helps preserve context across a split.</li>
+        <li><strong>Embeddings:</strong> <code>all-MiniLM-L6-v2</code> converts text into numerical vectors that can be compared for semantic similarity. The model may need to download on first use.</li>
+        <li><strong>Vector store:</strong> Chroma stores the vectors in <code>data/vector_store</code>. The app loads or builds the store and adds the source-checked summaries by stable ID if missing. The example text files lack verified metadata and are excluded from the answer retrieval filter.</li>
+        <li><strong>Retrieval:</strong> Only a narrow set of general question patterns about supported medicine names is accepted. Search filters by verified status and the requested medicine's source; results beyond the configured distance threshold are discarded. A similarity score is not proof of truth or medical safety.</li>
+        <li><strong>Generation or abstention:</strong> A prompt asks Gemini to answer only from retrieved text, avoid treatment advice, and abstain if context is insufficient. Unsupported questions or missing context receive an abstention. If generation fails, the service can return a busy message and a source-linked excerpt that may not answer the question.</li>
+      </ol>
+      <p>In the prescription tab, an exact known name can also display its short general summary directly; that display is separate from the question-answer retrieval flow.</p>
+    </section>
+
+    <section id="files">
+      <h2>08 / File-by-file guide</h2>
+      <p class="lead">Start with <code>app.py</code>, then follow each imported service as needed. Files containing generated data or credentials have different roles from source code.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th scope="col">File or folder</th><th scope="col">Responsibility</th></tr></thead>
+        <tbody>
+          <tr><td><code>app.py</code></td><td>Streamlit entry point: access checks, layout, image validation, OCR parsing, editable tables, confirmation, session cleanup, shopping controls, report display, and reference form. <code>require_access</code> supports local and experimental OIDC modes.</td></tr>
+          <tr><td><code>services/vision_service.py</code></td><td>Builds separate Gemini image prompts for prescriptions and reports; base64-encodes image bytes and validates the parsed JSON fields and types. It uses the shared model and response-text helpers in the RAG service.</td></tr>
+          <tr><td><code>services/product_search.py</code></td><td>Calls SerpApi using the Python standard library, validates responses and accepted Google links, extracts cautiously sortable INR values, and sorts listings. Network and parsing failures are reported without exposing raw provider errors.</td></tr>
+          <tr><td><code>services/report_service.py</code></td><td>Contains <code>compare_printed_range</code>, a small deterministic function for comparing a checked numeric result to a printed two-sided numeric range. It does not interpret health or check unit equivalence.</td></tr>
+          <tr><td><code>services/rag_service.py</code></td><td>Loads environment variables, defines source-checked reference summaries and model settings, loads and chunks illustrative documents, builds or loads Chroma, filters retrieval, constructs the prompt, calls Gemini, and handles abstention.</td></tr>
+          <tr><td><code>data/knowledge_base/amoxicillin.txt</code><br><code>data/knowledge_base/paracetamol.txt</code></td><td>Illustrative text files used when building the initial vector store. They are not verified answer sources; the answer path filters for verified metadata and the selected source.</td></tr>
+          <tr><td><code>data/sample_medicines/catalog.csv</code><br><code>data/sample_medicines/retailer_prices.csv</code></td><td>Small example datasets retained for learning. They are not used to validate medicines or display live retailer prices.</td></tr>
+          <tr><td><code>data/sample_reports/</code></td><td>Example report images, including a synthetic blood report. Check the contents and disclosure before using any sample; never upload personal records to Git.</td></tr>
+          <tr><td><code>data/vector_store/</code></td><td>Generated persistent Chroma index, including its SQLite file and collection files. It is Git-ignored and can be built again from configured data and summaries; it is not the language model.</td></tr>
+          <tr><td><code>tests/test_vision_service.py</code></td><td>Mocks Gemini responses and checks image extraction fields and malformed responses for prescriptions and reports.</td></tr>
+          <tr><td><code>tests/test_product_search.py</code></td><td>Mocks shopping responses and checks request parameters, errors, safe links, valid prices, and sorting.</td></tr>
+          <tr><td><code>tests/test_report_service.py</code></td><td>Checks numeric ranges, signed values, and cases that must not be compared.</td></tr>
+          <tr><td><code>tests/test_rag_service.py</code></td><td>Checks reference insertion, metadata filtering, prompt constraints, supported questions, and separation of medicine sources.</td></tr>
+          <tr><td><code>tests/test_vision_ui.py</code></td><td>Mocks Streamlit and services to check uploads, access gates, review, confirmation, privacy-related state clearing, shopping pagination, and report behavior.</td></tr>
+          <tr><td><code>pyproject.toml</code><br><code>uv.lock</code><br><code>.python-version</code></td><td>Project metadata and dependencies, locked dependency versions, and the preferred Python version for uv. Use <code>app.py</code> to launch Streamlit; the current package script is only a placeholder.</td></tr>
+          <tr><td><code>src/medifind_ai/__init__.py</code></td><td>Minimal package entry point. Its <code>main</code> currently prints a greeting; it does not start the application.</td></tr>
+          <tr><td><code>.streamlit/config.toml</code></td><td>Local server address, hidden error detail setting, and Streamlit theme. Optional OIDC secrets belong in Git-ignored <code>.streamlit/secrets.toml</code>, not this file.</td></tr>
+          <tr><td><code>.env</code><br><code>.gitignore</code></td><td>Local environment variables, including API credentials, and rules excluding secrets, the virtual environment, and generated files from Git. Never publish credentials or personal data.</td></tr>
+          <tr><td><code>.github/copilot-instructions.md</code></td><td>Project learning goals, preferred incremental development approach, technology choices, and medical safety requirements for coding assistants.</td></tr>
+          <tr><td><code>README.md</code><br><code>docs/developer-guide.html</code></td><td>The README gives setup, operation, safety, and deployment caveats. This guide explains the flow and modules in greater detail.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="tests">
+      <h2>09 / Test and troubleshoot</h2>
+      <pre><code>uv run python -m unittest discover -s tests -v
+uv run python -m unittest discover -s tests -p 'test_report_service.py' -v
+uv run python -m unittest discover -s tests -p 'test_vision_ui.py' -v</code></pre>
+      <p>The first command runs all tests; the others run one test file at a time. <code>unittest.mock</code> replaces external calls with controlled responses, making tests repeatable without sending real data. When changing a service, start with its tests, then run the full suite.</p>
+      <ul>
+        <li><strong>Local OCR fails:</strong> Check that the Tesseract program is installed and available on the terminal PATH, not just the Python wrapper.</li>
+        <li><strong>Gemini fails:</strong> Check the local key, provider access, network, model availability, and provider limits without printing the key. An extraction failure does not prove that the prescription is blank.</li>
+        <li><strong>Shopping is unavailable:</strong> Check that the optional SerpApi key is configured and that the provider is available. Search requires confirmed synthetic rows and an explicit click.</li>
+        <li><strong>Reference setup is slow or fails:</strong> The embedding model may need a first download; Chroma needs permission to write its local index. A successful retrieval is not clinical validation.</li>
+        <li><strong>Unexpected old session data:</strong> Use <strong>Clear session</strong> or remove the uploaded image. This only clears the app session and does not erase provider copies.</li>
+      </ul>
+    </section>
+
+    <section id="privacy">
+      <h2>10 / Safety and data boundaries</h2>
+      <ul>
+        <li>Uploading automatically sends the whole image to Google Gemini after the visible disclosure; it can include identifying information. De-identification alone does not guarantee anonymity. Gemini free-tier terms may permit use of content to improve products.</li>
+        <li>Shopping sends the selected query to SerpApi, which may retain it. Use synthetic demo data only. Do not treat results, prices, or links as verified pharmacy offers.</li>
+        <li>Local mode has no login. Experimental OIDC checks are not a complete production security design. Never expose the local app through a tunnel or proxy without an independently reviewed deployment.</li>
+        <li>Keep keys, images, user reports, sensitive logs, and evaluation data out of Git. Session clearing cannot delete data already sent to a provider.</li>
+        <li>Never infer illegible names, automatically substitute medicines, diagnose, recommend treatment changes, or treat a reported condition as a verified diagnosis. Seek qualified clinical review for uncertain information.</li>
+      </ul>
+      <p>See <a href="../README.md#before-patient-use">Before patient use</a> in the README for the outstanding clinical, privacy, security, and pharmacy-integration work.</p>
+    </section>
+
+    <section id="next">
+      <h2>11 / A small learning path</h2>
+      <ol>
+        <li>Run the app with a synthetic image and locate the matching UI code in <code>app.py</code>. Observe how editing a row affects confirmation.</li>
+        <li>Read <code>compare_printed_range</code> and run its test file. Add one example on paper, predicting whether it should compare before checking the result.</li>
+        <li>Trace a general reference question through <code>answer_question</code>, the metadata filter, and the prompt. Identify where unsupported questions are rejected.</li>
+        <li>Read a mocked shopping test and follow the query from button click to <code>search_shopping</code>. Consider why sorting cannot establish product equivalence.</li>
+        <li>Before adding a feature, define its safety boundary and one focused test. Keep changes small and discuss the next milestone before building it.</li>
+      </ol>
+    </section>
+    <footer>MediFind AI developer guide &middot; A learning prototype, not a medical service.</footer>
+  </main>
+</div>
+</body>
+</html>
