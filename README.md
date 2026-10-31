@@ -14,6 +14,14 @@ For a complete walkthrough of the workflows, AI concepts, modules, data, and tes
 
 The server defaults to `127.0.0.1`, which limits access to the local machine; this is not authentication and can be overridden by configuration.
 
+## Docker and hosted deployment
+
+`Dockerfile` describes a Linux environment with Python, the locked dependencies, and Tesseract. `.dockerignore` keeps local environment files, Streamlit secrets, report samples, and the generated vector store out of the build context. Build the image locally with `docker build -t medifind-ai:local .`. The first build can be large because the Linux lockfile includes machine-learning dependencies.
+
+The image preserves the app's loopback-only local mode; ordinary Docker port publishing does not make a service bound to a container's loopback address reachable. Docker Desktop host networking requires an explicit setting and has not yet been verified for this setup. Do not expose local mode through a proxy, tunnel, or forwarded port, and do not bake credentials into the image. Container environment variables can be visible through Docker inspection; only pass keys at runtime on a trusted machine. A container's generated vector store is temporary unless separately persisted.
+
+Streamlit Community Cloud builds from the GitHub repository rather than this Docker image. It can use `uv.lock` for Python dependencies and `packages.txt` for Tesseract. A hosted deployment is not ready until an OIDC provider, an approved account allowlist, secrets, and the actual deployment configuration have been set up and tested as described under **Access controls**. Do not bypass these checks or deploy for patient use. The new deployment files must be committed and pushed before a cloud build can use them.
+
 Uploading a PNG or JPEG of at most 10 MB and 20 million pixels automatically runs local OCR and sends the entire image to Google Gemini for AI extraction. The disclosure appears before the uploader; by uploading, you agree to this processing. On the Gemini free tier, Google may use submitted content to improve its products. Prescription images can contain sensitive health information; obtain permission and remove personal information when possible. De-identification alone does not guarantee that data is anonymous or appropriate to send to a third party. If Gemini fails, available local OCR results remain available for review.
 
 Use the **Prescription review** and **Medicine reference** tabs to switch between the two workflows. **Clear session**, in the sidebar, removes the current upload, review, consent, question, and answer from the active app session. Removing or replacing an upload also clears its review and consent. This does not delete data previously sent to Google or other copies outside the app; it is not a substitute for a reviewed privacy and retention policy.
